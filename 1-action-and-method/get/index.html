@@ -1,0 +1,33 @@
+<form>
+  <label for="search">Search a country</label>
+  <input id="search" name="query">
+  <button>Search</button>
+</form>
+
+<ul>
+  <li>France</li>
+  <li>Germany</li>
+  <li>United Kingdom</li>
+  <li>Australia</li>
+  <li>Austria</li>
+  <li>Spain</li>
+  <li>Itali</li>
+  <li>Norway</li>
+  <li>Sweden</li>
+<ul>
+
+<script>
+  const filter = new URLSearchParams(location.search).get('query');
+
+  (function filterList(filter) {
+    const list = document.querySelector('ul');
+    Array.from(list.children).forEach(child => {
+      if (!child.textContent.includes(filter)) list.removeChild(child);
+    })
+  })(filter);
+
+  (function fillInputWithQuery(filter) {
+    const input = document.querySelector('input');
+    input.value = filter;
+  })(filter);
+</script>
