@@ -1,0 +1,23 @@
+<form>
+  <label for="start">Start date</label>
+  <input type="date" id="start">
+  <label for="end">End date</label>
+  <input type="date" id="end">
+  <button>Send</button>
+</form>
+
+<script>
+  const start = document.getElementById('start');
+  const end = document.getElementById('end');
+
+  start.addEventListener('change', (event) => {
+    end.setAttribute('min', start.value);
+  })
+  end.addEventListener('change', (event) => {
+    start.setAttribute('max', end.value);
+  })
+</script>
+
+<style>
+  input:invalid { outline: 2px solid red; }
+</style>
