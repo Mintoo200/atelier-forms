@@ -1,0 +1,34 @@
+<form novalidate="true">
+  <label for="password">Password</label>
+  <input type="password" id="password" required="" aria-describedby="error">
+  <p id="error"></p>
+  <button>Send</button>
+</form>
+
+<script>
+  function getErrorMessageElement(input) {
+    const inputDescriptions = input.getAttribute('aria-describedby')?.split(' ');
+    if (inputDescriptions)
+      return form.querySelector(`[id|="error"]:is(${inputDescriptions.map((id) => `#${id}`).join(', ')})`);
+    return null;
+  }
+  function setError(input) {
+    const errorElement = getErrorMessageElement(input);
+    if (errorElement) errorElement.textContent = input.validationMessage;
+  }
+
+  const form = document.querySelector('form')
+  form.addEventListener('submit', (event) => {
+    const valid = form.checkValidity();
+    if (!valid) {
+      event.preventDefault();
+      Array.from(form.elements).forEach(input => setError(input));
+      form.querySelector(':invalid').focus()
+    }
+  })
+</script>
+
+<style>
+  [id|="error"]:empty { display: none; }
+  [id|="error"] { color: red; }
+</style>
