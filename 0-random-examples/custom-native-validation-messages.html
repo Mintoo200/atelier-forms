@@ -1,0 +1,17 @@
+<form>
+  <label for="password">Password</label>
+  <input type="password" id="password" required="" pattern=".*[0-9].*">
+  <button>Send</button>
+</form>
+
+<script>
+  const password = document.querySelector('input');
+  password.addEventListener('change', (event) => {
+    if (password.validity.valueMissing)
+      password.setCustomValidity('You really should enter a value in this password field');
+    else if (password.validity.patternMismatch)
+      password.setCustomValidity('Your password should contain a digit');
+    else
+      password.setCustomValidity('');
+  })
+</script>
