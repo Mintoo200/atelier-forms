@@ -1,0 +1,38 @@
+<form method="POST" action="./post-json/login">
+  <label for="password">Email</label>
+  <input id="password" name="email">
+  <label for="password2">Password</label>
+  <input id="password2" name="password">
+  <fieldset>
+    <legend>Subscribe to</legend>
+    <input type="checkbox" name="subscribe" id="newsletter" value="newsletter">
+    <label for="newsletter">Newsletter</label>
+    <input type="checkbox" name="subscribe" id="ads" value="ads">
+    <label for="ads">Ads</label>
+  </fieldset>
+  <button>Log In</button>
+</form>
+
+<script>
+  function toJSON(form) {
+    const formData = new FormData(form);
+    const body = Array.from(formData.keys()).reduce((result, key) => {
+      const multiple = form.querySelectorAll(`[name=${key}]`).length > 1;
+      return {
+        ...result,
+        [key]: multiple ? formData.getAll(key) : formData.get(key)
+      }
+    }, {});
+    return body
+  }
+
+  const form = document.querySelector('form');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const body = toJSON(form);
+    fetch(form.action, {
+      method: form.method,
+      body: JSON.stringify(body),
+    });
+  })
+</script>
