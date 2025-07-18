@@ -1,0 +1,25 @@
+<form>
+  <label for="email">Email (required)</label>
+  <input type="email" id="email" required="true">
+  <button>OK</button>
+</form>
+
+<style>
+  input[data-touched="true"]:invalid {
+    border: 2px solid red;
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  const inputs = document.querySelectorAll('input');
+
+  inputs.forEach(input => {
+    input.addEventListener('change', (event) => {
+      input.setAttribute('data-touched', 'true');
+    })
+    input.addEventListener('invalid', (event) => {
+      input.setAttribute('data-touched', 'true');
+    })
+  })
+</script>
