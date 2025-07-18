@@ -1,0 +1,26 @@
+<div hidden id="error-message">
+  An error occured.
+  <button form="form" type="submit">Retry</button>
+</div>
+
+<form id="form">
+  <label for="email">Email</label>
+  <input id="email" type="email">
+  <button>Send</button>
+  <input type="checkbox" id="error" checked="">
+  <label for="error">Serveur responds with an error</label>
+</form>
+
+<script>
+  const errorCheckbox = document.getElementById('error');
+
+  const form = document.querySelector('form');
+  const errorMessage = document.getElementById('error-message');
+  form.addEventListener('submit', () => {
+    event.preventDefault();
+    if (errorCheckbox.checked)
+      errorMessage.removeAttribute('hidden');
+    else
+      errorMessage.setAttribute('hidden', 'true');
+  })
+</script>
