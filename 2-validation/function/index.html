@@ -11,7 +11,7 @@
     const green = Number.parseInt(input.value.substring(3, 5), 16);
     const blue = Number.parseInt(input.value.substring(5, 7), 16);
     if (red < green || red < blue)
-      input.setCustomValidity('Value must be divisible by 3');
+      input.setCustomValidity('Color must be mainly red');
     else
       input.setCustomValidity('');
   })
