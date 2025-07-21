@@ -6,12 +6,17 @@
 
 <script>
   const password = document.querySelector('input');
+  setError(password)
   password.addEventListener('change', (event) => {
+    setError(password)
+  })
+
+  function setError(input) {
     if (password.validity.valueMissing)
       password.setCustomValidity('You really should enter a value in this password field');
     else if (password.validity.patternMismatch)
       password.setCustomValidity('Your password should contain a digit');
     else
       password.setCustomValidity('');
-  })
+  }
 </script>
